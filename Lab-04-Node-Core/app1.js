@@ -1,0 +1,1 @@
+const sum=require("./sum");const evenOdd=require("./even-odd");console.log("Sum:",sum(12,8));console.log("17 is",evenOdd(17));

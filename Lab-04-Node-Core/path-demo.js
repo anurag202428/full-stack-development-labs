@@ -1,0 +1,1 @@
+const path=require("node:path");const file=path.join(__dirname,"sample","notes.txt");console.log({basename:path.basename(file),extension:path.extname(file),directory:path.dirname(file),absolute:path.resolve(file)});

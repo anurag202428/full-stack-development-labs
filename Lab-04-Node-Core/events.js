@@ -1,0 +1,1 @@
+const EventEmitter=require("node:events");const orders=new EventEmitter();orders.on("orderPlaced",order=>console.log(`Receipt: ${order.id} | ${order.item} | ₹${order.amount}`));[{id:"O-101",item:"Keyboard",amount:2199},{id:"O-102",item:"Mouse",amount:899},{id:"O-103",item:"USB Hub",amount:599}].forEach(order=>orders.emit("orderPlaced",order));

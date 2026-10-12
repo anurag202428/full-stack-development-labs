@@ -1,0 +1,87 @@
+{
+  "info": {
+    "name": "Full Stack Lab 6 - Task API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:5000/api/health"
+      }
+    },
+    {
+      "name": "List tasks",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:5000/api/tasks"
+      }
+    },
+    {
+      "name": "Create task",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "x-api-key",
+            "value": "local-demo-key"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\":\"Test API from Postman\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "http://localhost:5000/api/tasks"
+      }
+    },
+    {
+      "name": "Update task 1",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "x-api-key",
+            "value": "local-demo-key"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"completed\":true}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "http://localhost:5000/api/tasks/1"
+      }
+    },
+    {
+      "name": "Delete task 1",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "local-demo-key"
+          }
+        ],
+        "url": "http://localhost:5000/api/tasks/1"
+      }
+    }
+  ]
+}

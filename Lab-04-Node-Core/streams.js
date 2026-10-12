@@ -1,0 +1,1 @@
+const fs=require("node:fs");const source=__filename;const stream=fs.createReadStream(source,{encoding:"utf8",highWaterMark:128});let chunks=0;stream.on("data",chunk=>{chunks++;console.log(`Chunk ${chunks}: ${Buffer.byteLength(chunk)} bytes`)});stream.on("end",()=>console.log(`Stream complete. Chunks: ${chunks}`));stream.on("error",console.error);

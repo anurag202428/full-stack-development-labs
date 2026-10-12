@@ -1,0 +1,18 @@
+require("dotenv").config();
+const express=require("express");
+const studentsRouter=require("./routes/students");
+const app=express();const PORT=process.env.PORT||4000;
+app.use(express.json());app.use(express.urlencoded({extended:true}));
+app.use((req,res,next)=>{console.log(new Date().toISOString(),req.method,req.originalUrl);next()});
+app.get("/",(req,res)=>res.json({message:"Express lab API",routes:["/about","/students","/students/:id","/api/tasks"]}));
+app.get("/about",(req,res)=>res.json({name:"Anurag Parmar",rollNo:8,section:"B"}));
+app.get("/health",(req,res)=>res.json({status:"ok"}));
+app.use("/students",studentsRouter);
+const tasks=[{id:1,title:"Read lab sheet",completed:false}];let nextId=2;
+app.get("/api/tasks",(req,res)=>res.json(tasks));
+app.post("/api/tasks",(req,res)=>{const title=String(req.body.title||"").trim();if(!title)return res.status(400).json({error:"title is required"});const task={id:nextId++,title,completed:false};tasks.push(task);res.status(201).json(task)});
+app.put("/api/tasks/:id",(req,res,next)=>{const task=tasks.find(t=>t.id===Number(req.params.id));if(!task){const e=new Error("Task not found");e.status=404;return next(e)}if(typeof req.body.title==="string")task.title=req.body.title.trim();if(typeof req.body.completed==="boolean")task.completed=req.body.completed;res.json(task)});
+app.delete("/api/tasks/:id",(req,res,next)=>{const i=tasks.findIndex(t=>t.id===Number(req.params.id));if(i<0){const e=new Error("Task not found");e.status=404;return next(e)}tasks.splice(i,1);res.json({message:"Task deleted"})});
+app.use((req,res)=>res.status(404).json({error:"Route not found"}));
+app.use((err,req,res,next)=>{console.error(err);res.status(err.status||500).json({error:err.message||"Internal server error"})});
+app.listen(PORT,()=>console.log(`Express API ready at http://localhost:${PORT}`));

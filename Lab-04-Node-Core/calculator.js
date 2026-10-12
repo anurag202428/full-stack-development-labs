@@ -1,0 +1,1 @@
+const [,,a,b,op="+"]=process.argv;const x=Number(a),y=Number(b);if(!Number.isFinite(x)||!Number.isFinite(y)){console.log("Usage: node calculator.js <number> <number> <+|-|*|/>");process.exit(1)}const operations={"+":()=>x+y,"-":()=>x-y,"*":()=>x*y,"/":()=>y===0?NaN:x/y};if(!operations[op])throw new Error("Unsupported operator");console.log("Result:",operations[op]());

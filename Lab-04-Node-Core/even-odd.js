@@ -1,0 +1,1 @@
+function evenOdd(n){return n%2===0?"even":"odd";} module.exports=evenOdd;

@@ -1,0 +1,1 @@
+const http=require("node:http");const PORT=Number(process.env.PORT)||4000;http.createServer((req,res)=>{res.writeHead(200,{"Content-Type":"text/plain"});res.end("Node environment-variable lab is running.\n")}).listen(PORT,()=>console.log(`Server listening on http://localhost:${PORT}`));
